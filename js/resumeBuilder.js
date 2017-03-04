@@ -24,9 +24,9 @@ var bio = {
     "github" : "blahface",
     "mobile" : "111-111-1111",
     "twitter": "",
-    "location" : "The Citadel Presidium, Serpent Nebula"
+    "location" : "Columbus, Ohio"
   },
-  "biopic" : HTMLbioPic.replace("%data%","images/my emotes/pretty-onion-head-emoticon.gif"),
+  "biopic" : HTMLbioPic.replace("%data%","images/my_emotes/pretty-onion-head-emoticon.gif"),
   "welcome" : "Greetings, I shall sing to you the song of my people!",
   "skills" : [
     "python", "html", "css", "java", "singing", "trumpet", "piano", "cello", "violin", "drawing", "creative-writing", "problem-solving", "mechanical-repair", "trouble-shooting"
@@ -56,18 +56,18 @@ var education = {
   "schools": [
     {
       "name": "Columbus State Community College",
-      "city": "Columbus, Oh",
+      "location": "Columbus, Ohio",
       "dates": ["2003-2004", "2012-2015"],
       "degree": "AS",
       "major": "science",
     },
-    {
+    /*{
       "name": "Community College of The Air Force",
-      "city": "Gunter Annex, AL",
+      "location": "Gunter Annex, AL",
       "dates": "Nov 2004 - Oct 2011",
       "degree": "",
       "major": "applied science",
-    },
+    },*/
   ],
   "onlineCourses": [
     {
@@ -110,9 +110,9 @@ var projects = {
       "dates": "Sep 1234 - Oct 1235",
       "description": "Here is a description of this project.",
       "images": [
-        "images/my emotes/serenade-onion-head-emoticon.gif", "images/my emotes/robot-onion-head-emoticon.gif",
-        "images/my emotes/relax2-onion-head-emoticon.gif",
-        "images/my emotes/sleeping-onion-head-emoticon.gif"
+        "images/my_emotes/serenade-onion-head-emoticon.gif", "images/my_emotes/robot-onion-head-emoticon.gif",
+        "images/my_emotes/relax2-onion-head-emoticon.gif",
+        "images/my_emotes/sleeping-onion-head-emoticon.gif"
       ]
   }
   ]
@@ -205,7 +205,40 @@ $(document).click(function(loc) {
   logClicks(x,y)// your code goes here
 });
 
+var displayEducation = function(){
+  for (element in education.schools){
+    if (education.schools.length > 0){
+      $("#education").append(HTMLschoolStart);
+      var formattedschoolName = HTMLschoolName.replace("%data%", education.schools[element].name);
+      var formattedschoolDegree = HTMLschoolDegree.replace("%data%", education.schools[element].degree);
+      var formattedschoolLocation = HTMLschoolLocation.replace("%data%", education.schools[element].location);
+      var formattedschoolDates = HTMLschoolDates.replace("%data%", education.schools[element].dates);
+      var formattedschoolMajor = HTMLschoolMajor.replace("%data%", education.schools[element].major);
+      $(".education-entry:last").append(formattedschoolName);
+      $(".education-entry:last").append(formattedschoolLocation);
+      $(".education-entry:last").append(formattedschoolDates);
+    };
+  };
+  $("#education").append(HTMLonlineClasses);
+  for (element in education.onlineCourses){
+    if (education.onlineCourses.length > 0){
+      //$("#education").append(HTMLonlineClasses);
+      $("#education").append(HTMLonlineStart);
 
+      var formattedonlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[element].title);
+      var formattedonlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[element].school);
+      var formattedonlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[element].dates);
+      var formattedonlineURL = HTMLonlineURL.replace("%data%", education.onlineCourses[element].url);
+
+      $(".online-entry:last").append(formattedonlineTitle+formattedonlineSchool);
+
+      $(".online-entry:last").append(formattedonlineDates);
+      $(".online-entry:last").append(formattedonlineURL);
+    };
+  };
+};
+
+displayEducation();
 
 projects.display = function() {
   for (part in projects.projects){

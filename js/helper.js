@@ -7,7 +7,6 @@ Don't worry, you'll learn what's going on in this file throughout the course. Yo
 Cameron Pittman
 */
 
-
 /*
 These are HTML strings. As part of the course, you'll be using JavaScript functions
 replace the %data% placeholder text you see in them.
@@ -49,6 +48,7 @@ var HTMLschoolDates = '<div class="date-text">%data%</div>';
 var HTMLschoolLocation = '<div class="location-text">%data%</div>';
 var HTMLschoolMajor = '<em><br>Major: %data%</em>';
 
+var HTMLonlineStart = '<div class="online-entry"></div>'
 var HTMLonlineClasses = '<h3>Online Classes</h3>';
 var HTMLonlineTitle = '<a href="#">%data%';
 var HTMLonlineSchool = ' - %data%</a>';
@@ -163,15 +163,22 @@ function initializeMap() {
 
     // marker is an object with additional data about the pin for a single location
     var marker = new google.maps.Marker({
+      icon: {
+        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+        strokeColor: "blue",
+        scale: 3
+    },
       map: map,
       position: placeData.geometry.location,
       title: name
+
     });
 
     // infoWindows are the little helper windows that open when you click
     // or hover over a pin on a map. They usually contain more information
     // about a location.
     var infoWindow = new google.maps.InfoWindow({
+      //'<div class="iw">name</div>'
       content: name
     });
 
@@ -239,7 +246,7 @@ Uncomment the code below when you're ready to implement a Google Map!
 */
 
 // Calls the initializeMap() function when the page loads
-//window.addEventListener('load', initializeMap);
+window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds

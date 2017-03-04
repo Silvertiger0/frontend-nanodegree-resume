@@ -24,13 +24,13 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
 
   <!-- Load the page styles. -->
   <link href="css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="Portofolio\frontend-nanodegree-resume-master\images\my emotes">
+  <!-- <link rel="stylesheet" href="resume\frontend-nanodegree-resume\images\my_emotes"> -->
 
 
   <!--
   Uncomment the <script> tag below when you're ready to add an interactive Google Map to your resume!
   -->
-  <script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDmdioQVyxPWsh2JLC_glL_X_OD6SYqCOE"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyD5-SIrmQC9MmSVAQKep0GwQSWT7GKPzqc"></script>
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
@@ -44,7 +44,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     resume below. You can pretty easily figure out what each section will
     display by looking at the id or at what's written between the <h2> tags.
     -->
-    <div id="header" class="center-content clear-fix">
+    <div id="header" class="center-content clear-fix bgimg">
       <ul id="topContacts" class="flex-box"></ul>
     </div>
     <div style="clear: both;"></div>
@@ -56,6 +56,10 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     </div>
     <div id="education" class="gray">
       <h2>Education</h2>
+
+    </div>
+    <div id="online" class="gray">
+
     </div>
     <div id="mapDiv">
       <h2>Where I've Lived and Worked</h2>
@@ -136,6 +140,9 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     }
     if(document.getElementsByClassName('education-entry').length === 0) {
       document.getElementById('education').style.backgroundColor = 'black';
+    }
+    if(document.getElementsByClassName('online-entry').length === 0) {
+      document.getElementById('online').style.backgroundColor = 'black';
     }
     if(document.getElementsByClassName('flex-item').length === 0) {
       document.getElementById('lets-connect').style.backgroundColor = 'black';

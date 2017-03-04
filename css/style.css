@@ -18,9 +18,23 @@ h6 {
   overflow: auto;
 }
 
+.gm-style-iw{
+  color: goldenrod;
+  background-color: steelblue;
+}
+
+.bgimg{
+
+  background-image: url('../images/space-stars-road.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 .education-entry,
 .work-entry,
-.project-entry {
+.project-entry,
+.online-entry {
   padding: 0 5%;
 }
 
