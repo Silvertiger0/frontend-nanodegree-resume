@@ -1,3 +1,5 @@
+// I found all my images and gifs using google search and my map is provided by google map APIs.
+
 var bio = {
     "name": "Christopher Grimes",
     "role": "Jack-of-all-trades",
