@@ -11,7 +11,7 @@ var bio = {
         "location": "Columbus, Ohio"
     },
     "biopic": "images/my_emotes/pretty-onion-head-emoticon.gif",
-    "welcome": "Greetings, I shall sing to you the song of my people!",
+    "welcomeMessage": "Greetings, I shall sing to you the song of my people!",
     "skills": [
         "python", "html", "css", "JavaScript", "singing", "trumpet", "piano", "cello", "violin", "drawing", "creative-writing", "problem-solving", "mechanical-repair", "trouble-shooting"
     ]
@@ -41,14 +41,16 @@ var education = {
             "location": "Columbus, Ohio",
             "dates": ["2003-2004", "2012-2015"],
             "degree": "AS",
-            "major": "science",
+            "majors": ["Aviation Maintenance", "science"],
+            "url": "http://www.cscc.edu/"
         },
         {
             "name": "Community College of The Air Force",
             "location": "Gunter Annex, AL",
             "dates": "Nov 2004 - Oct 2011",
             "degree": "Aircraft Armament Systems Technician",
-            "major": "applied science",
+            "majors": ["applied science"],
+            "url": "http://www.airuniversity.af.mil/Barnes/CCAF/"
         },
     ],
     "onlineCourses": [{
@@ -133,10 +135,9 @@ bio.display = function() {
     if (bio.contacts.location.length > 0) {
         formattedContacts = formattedContacts + " " + formattedLocation;
     }
-    $("#header").append(formattedContacts);
-    $("#header").append(formattedBioPic);
-    var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcome);
-    $("#header").append(formattedWelcome);
+    $("#footerContacts").append(formattedContacts);
+    var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+    $("#header").append(formattedBioPic, formattedWelcome, formattedContacts);
     if (bio.skills.length > 0) {
         $("#header").append(HTMLskillsStart);
         var skills4bills = [];
@@ -149,8 +150,6 @@ bio.display = function() {
     }
 };
 
-bio.display();
-
 // This function internationalizes my resume by taking my family name and capitalizing it as well as standardizing my given name.
 function inName(name) {
     name = name.trim().split(" ");
@@ -159,8 +158,6 @@ function inName(name) {
     var last = name[1].toUpperCase();
     return first + " " + last;
 }
-
-$("#main").append(internationalizeButton);
 
 // This function is used to generate my work experience section.
 work.display = function() {
@@ -178,8 +175,6 @@ work.display = function() {
         $(".work-entry:last").append(formattedDescription);
     }
 };
-
-work.display();
 
 // This function allows for the tracking of cliks on the resume webpage. This may be useful for statistics and/or metrics.
 $(document).click(function(loc) {
@@ -206,8 +201,13 @@ education.display = function() {
         var formattedschoolDates = HTMLschoolDates.replace("%data%", element.dates);
         $(".education-entry:last").append(formattedschoolDates);
 
-        var formattedschoolMajor = HTMLschoolMajor.replace("%data%", element.major);
-        $(".education-entry:last").append(formattedschoolMajor);
+        var formattedschoolURL = HTMLonlineURL.replace("%data%", element.url);
+        $(".education-entry:last").append(formattedschoolURL);
+
+        for (var q = 0; q < element.majors.length; q++){
+          var formattedschoolMajor = HTMLschoolMajor.replace("%data%", element.majors[q]);
+          $(".education-entry:last").append(formattedschoolMajor);
+      }
     }
 
     $("#education").append(HTMLonlineClasses);
@@ -230,8 +230,6 @@ education.display = function() {
 
     }
 };
-
-education.display();
 
 // This function will be used to generate and display any projects I may have worked on. For now, it shows a random goofball example.
 projects.display = function() {
@@ -257,6 +255,14 @@ projects.display = function() {
     }
 };
 
+bio.display();
+
+education.display();
+
+work.display();
+
 projects.display();
 
 $("#mapDiv").append(googleMap);
+
+$("#main").append(internationalizeButton);
